@@ -1,0 +1,13 @@
+import scala.reflect.runtime.{universe => ru}
+def getTypeTag[T:ru.TypeTag](obj:T) = ru.typeTag[T]
+val xs: Iterable[Int] = List(1,2,3)
+xs.getClass.getName
+val theType = getTypeTag(xs).tpe
+val t = Traversable(Traversable(1,2,3),Traversable(4,5,6),7)
+val t1 = Traversable(Traversable(1,2,3),Traversable(4,5,6),7)
+val t2 = Traversable(Traversable(1,2,3),Traversable(4L,5L,6L),Traversable(7:Short,8:Short))
+t2.flatten
+val s7 = Traversable(Some(1),None,Some(3))
+s7.flatten
+val m1 = Traversable(Traversable(1,2,3),Traversable(4,5,6),Traversable(7,8,9),Traversable(11,12,13))
+val m2 = m1.transpose
